@@ -44,8 +44,6 @@ const handlers = {
       }
     },
 
-
-
     'AMAZON.HelpIntent': function () {
         this.emit(':ask', 'speechOutput', 'reprompt');
     },
