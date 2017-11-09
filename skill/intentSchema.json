@@ -1,0 +1,29 @@
+{
+  "intents": [
+    {
+      "intent": "NameCapture",
+      "slots": [
+        {
+          "name": "USFirstName",
+          "type": "AMAZON.US_FIRST_NAME"
+        },
+        {
+          "name": "UKFirstName",
+          "type": "AMAZON.GB_FIRST_NAME"
+        }
+      ]
+    },
+    {
+      "intent": "AlexaMeetupNumbers"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    }
+  ]
+}

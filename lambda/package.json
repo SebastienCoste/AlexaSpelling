@@ -1,0 +1,6 @@
+{
+  "author": "scoste",
+  "dependencies": {
+    "alexa-sdk": "^1.0.19"
+  }
+}
