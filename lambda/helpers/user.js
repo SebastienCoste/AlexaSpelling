@@ -1,11 +1,6 @@
 module.exports = function getUserName(data) {
-  let userName = undefined;
-  if (data.attributes && data.attributes['userName']){
-    userName = data.attributes['userName'];
-  }
 
-  if (!userName
-    && data.event
+  if (data.event
     && data.event.request
     && data.event.request.intent
     && data.event.request.intent.slots
@@ -16,10 +11,15 @@ module.exports = function getUserName(data) {
     let UKFirstNameSlot = data.event.request.intent.slots.UKFirstName.value;
 
     if (USFirstNameSlot) {
-      userName = USFirstNameSlot;
+      return USFirstNameSlot;
     } else if (UKFirstNameSlot) {
-      userName = UKFirstNameSlot;
+      return UKFirstNameSlot;
     }
   }
-  return userName;
+
+  if ( data.session && data.session.attributes && data.session.attributes['userName']){
+    return data.session.attributes['userName'];
+  }
+
+  return undefined;
 };

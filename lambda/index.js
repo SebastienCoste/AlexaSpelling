@@ -100,6 +100,6 @@ exports.handler = function (event, context, callback) {
     // one new line to reference the DynamoDB table
     alexa.dynamoDBTableName = 'SpellingContest';
     alexa.registerHandlers(handlers);
-    eventSourcing(event).save();
+    eventSourcing({"event": event, "AWScontext": context}).save();
     alexa.execute();
 };

@@ -36,8 +36,8 @@ const newTableParams = {
 module.exports = function event(data){
   //SpellingContestEvent
   let intent = "NewSession";
-  if (data.request && data.request.intent){
-    intent = data.request.intent.name;
+  if (data.event.request && data.event.request.intent){
+    intent = data.event.request.intent.name;
   }
 
   let userName = getUserName(data);
@@ -45,8 +45,8 @@ module.exports = function event(data){
     userName = "UNKNOWN";
   }
 
-  const sessionId = data.session.sessionId;
-  const userId = data.session.user.userId;
+  const sessionId = data.event.session.sessionId;
+  const userId = data.event.session.user.userId;
   const timestamp = new Date();
     const self = {
         "event": data,
