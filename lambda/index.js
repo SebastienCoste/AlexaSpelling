@@ -5,7 +5,7 @@ const Alexa = require('alexa-sdk');
 // Helpers
 const convertArrayToReadableString = require('./helpers/convertArrayToReadableString');
 const getAWord = require('./helpers/words');
-
+const getUserName = require('./helpers/user');
 const eventSourcing = require('./Event/event');
 
 const appId = "amzn1.ask.skill.11532793-2767-420b-ae38-e2ae5e5a397a";  // TODO replace with your app ID (OPTIONAL).
@@ -17,7 +17,7 @@ const handlers = {
   'NewSession': function () {
 
       // Check for User Data in Session Attributes
-    var userName = this.attributes['userName'];
+    let userName = this.attributes['userName'];
        if (userName) {
          // greet the user by name
          this.emit(':ask', `Welcome back ${userName}!`,  'What would you like to do?');
@@ -28,17 +28,7 @@ const handlers = {
   },
   'NameCapture': function () {
 
-      // Get Slot Values
-      var USFirstNameSlot = this.event.request.intent.slots.USFirstName.value;
-      var UKFirstNameSlot = this.event.request.intent.slots.UKFirstName.value;
-
-      // Get Name
-      var userName;
-      if (USFirstNameSlot) {
-        userName = USFirstNameSlot;
-      } else if (UKFirstNameSlot) {
-        userName = UKFirstNameSlot;
-      }
+      let userName = getUserName(this);
 
       // Save Name in Session Attributes
       if (userName) {
@@ -51,9 +41,9 @@ const handlers = {
     },
     'StartIntent': function () {
 
-        var word = getAWord();
+        let word = getAWord();
         this.attributes['word'] = word;
-        var number = word.trim().length;
+        let number = word.trim().length;
 
         this.emit(':ask',
             `we\'re looking for a word of ${number} letters <break time="1s"/>  <say-as interpret-as="spell-out">${word}</say-as>` ,
@@ -61,12 +51,12 @@ const handlers = {
     },
     'AnswerIntent': function () {
 
-        var userName = this.attributes['userName'];
+        let userName = this.attributes['userName'];
         if (!userName){
             userName = "";
         }
-        var word = this.attributes['word'];
-        var answer = this.event.request.intent.slots.wordAnswer.value;
+        let word = this.attributes['word'];
+        let answer = this.event.request.intent.slots.wordAnswer.value;
 
         if (!word){
             this.emit(':ask', `${userName} + start a contest by sating <break time="0.5s"/>  start`, `say <break time="0.5s"/>  start <break time="0.5s"/>  to start a contest.`);
@@ -93,7 +83,7 @@ const handlers = {
     },
     'AMAZON.StopIntent': function () {
 
-        var userName = this.attributes['userName'];
+        let userName = this.attributes['userName'];
             if (userName) {
                 this.emit(':tell', `Bye ${userName}!`);
             } else {
@@ -105,7 +95,7 @@ const handlers = {
 
 
 exports.handler = function (event, context, callback) {
-    var alexa = Alexa.handler(event, context, callback);
+    let alexa = Alexa.handler(event, context, callback);
     alexa.appId = appId;
     // one new line to reference the DynamoDB table
     alexa.dynamoDBTableName = 'SpellingContest';
