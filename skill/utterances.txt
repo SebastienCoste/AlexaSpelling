@@ -1,6 +1,8 @@
 AnswerIntent (I think/probably/maybe/perhaps/ ) (my/the/an/a) answer is {wordAnswer}
 AnswerIntent (I think/probably/maybe/perhaps/ ) (is it/it is/it's/this is/that is/that's/is that/is this/ ) {wordAnswer}
+
 StartIntent (please/ ) (start/let's go/begin/commence/launch/raise) ( /the contest/the game/the match/it)
+
 NameCapture (please/ ) (call me/you can call me/my name is/I am/I'm/ ) ({USFirstName}/{UKFirstName})
 
 
