@@ -6,6 +6,8 @@ const Alexa = require('alexa-sdk');
 const convertArrayToReadableString = require('./helpers/convertArrayToReadableString');
 const getAWord = require('./helpers/words');
 
+const eventSourcing = require('./Event/event');
+
 const appId = "amzn1.ask.skill.11532793-2767-420b-ae38-e2ae5e5a397a";  // TODO replace with your app ID (OPTIONAL).
 
 
@@ -13,7 +15,9 @@ const appId = "amzn1.ask.skill.11532793-2767-420b-ae38-e2ae5e5a397a";  // TODO r
 const handlers = {
 
   'NewSession': function () {
-    // Check for User Data in Session Attributes
+      beforeEachIntent("NewSession");
+
+      // Check for User Data in Session Attributes
     var userName = this.attributes['userName'];
        if (userName) {
          // greet the user by name
@@ -24,6 +28,7 @@ const handlers = {
     }
   },
   'NameCapture': function () {
+
       // Get Slot Values
       var USFirstNameSlot = this.event.request.intent.slots.USFirstName.value;
       var UKFirstNameSlot = this.event.request.intent.slots.UKFirstName.value;
@@ -46,9 +51,10 @@ const handlers = {
       }
     },
     'StartIntent': function () {
+
         var word = getAWord();
         this.attributes['word'] = word;
-
+        var number = word.trim().length;
 
         this.emit(':ask',
             `we\'re looking for a word of ${number} letters <break time="2s"/>  <say-as interpret-as="spell-out">${word}</say-as>` ,
@@ -78,19 +84,22 @@ const handlers = {
         }
     },
     'AMAZON.HelpIntent': function () {
+
         this.emit(':ask', 'speechOutput', 'reprompt');
     },
     'AMAZON.CancelIntent': function () {
+
         this.emit(':tell', 'OK.');
     },
     'AMAZON.StopIntent': function () {
-      var userName = this.attributes['userName'];
-       if (userName) {
-         this.emit(':tell', `Bye ${userName}!`);
-      } else {
-        this.emit(':tell', 'OK bye');
-      }
-    }
+
+        var userName = this.attributes['userName'];
+            if (userName) {
+                this.emit(':tell', `Bye ${userName}!`);
+            } else {
+                this.emit(':tell', 'OK bye');
+            }
+        }
 
 };
 
@@ -100,5 +109,8 @@ exports.handler = function (event, context, callback) {
     // one new line to reference the DynamoDB table
     alexa.dynamoDBTableName = 'HelloWorld';
     alexa.registerHandlers(handlers);
+    eventSourcing(event.request).save();
     alexa.execute();
 };
+
+
