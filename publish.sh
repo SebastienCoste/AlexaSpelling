@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 rm lambda.zip
 cd lambda
 npm install
