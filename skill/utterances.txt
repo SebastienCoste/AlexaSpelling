@@ -1,7 +1,8 @@
 AnswerIntent (I think/probably/maybe/perhaps/ ) (my/the/an/a) answer is {wordAnswer}
 AnswerIntent (I think/probably/maybe/perhaps/ ) (is it/it is/it's/this is/that is/that's/is that/is this/ ) {wordAnswer}
 
-StartIntent (please/ ) (start/let's go/begin/commence/launch/raise) ( /the contest/the game/the match/it)
+StartIntent (please/ ) (go/start/let's go/begin/commence/launch/raise) ( /the contest/the game/the match/it/again)
+StartIntent (please/ ) again
 
 NameCapture (please/ ) (call me/you can call me/my name is/I am/I'm/ ) ({USFirstName}/{UKFirstName})
 
@@ -99,62 +100,88 @@ AnswerIntent this is {wordAnswer}
 AnswerIntent {wordAnswer}
 
 
+StartIntent again
 StartIntent begin
+StartIntent begin again
 StartIntent begin it
 StartIntent begin the contest
 StartIntent begin the game
 StartIntent begin the match
 StartIntent commence
+StartIntent commence again
 StartIntent commence it
 StartIntent commence the contest
 StartIntent commence the game
 StartIntent commence the match
+StartIntent go
+StartIntent go again
+StartIntent go it
+StartIntent go the contest
+StartIntent go the game
+StartIntent go the match
 StartIntent launch
+StartIntent launch again
 StartIntent launch it
 StartIntent launch the contest
 StartIntent launch the game
 StartIntent launch the match
 StartIntent let's go
+StartIntent let's go again
 StartIntent let's go it
 StartIntent let's go the contest
 StartIntent let's go the game
 StartIntent let's go the match
+StartIntent please again
 StartIntent please begin
+StartIntent please begin again
 StartIntent please begin it
 StartIntent please begin the contest
 StartIntent please begin the game
 StartIntent please begin the match
 StartIntent please commence
+StartIntent please commence again
 StartIntent please commence it
 StartIntent please commence the contest
 StartIntent please commence the game
 StartIntent please commence the match
+StartIntent please go
+StartIntent please go again
+StartIntent please go it
+StartIntent please go the contest
+StartIntent please go the game
+StartIntent please go the match
 StartIntent please launch
+StartIntent please launch again
 StartIntent please launch it
 StartIntent please launch the contest
 StartIntent please launch the game
 StartIntent please launch the match
 StartIntent please let's go
+StartIntent please let's go again
 StartIntent please let's go it
 StartIntent please let's go the contest
 StartIntent please let's go the game
 StartIntent please let's go the match
 StartIntent please raise
+StartIntent please raise again
 StartIntent please raise it
 StartIntent please raise the contest
 StartIntent please raise the game
 StartIntent please raise the match
 StartIntent please start
+StartIntent please start again
 StartIntent please start it
 StartIntent please start the contest
 StartIntent please start the game
 StartIntent please start the match
 StartIntent raise
+StartIntent raise again
 StartIntent raise it
 StartIntent raise the contest
 StartIntent raise the game
 StartIntent raise the match
 StartIntent start
+StartIntent start again
 StartIntent start it
 StartIntent start the contest
 StartIntent start the game

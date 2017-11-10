@@ -15,7 +15,6 @@ const appId = "amzn1.ask.skill.11532793-2767-420b-ae38-e2ae5e5a397a";  // TODO r
 const handlers = {
 
   'NewSession': function () {
-      beforeEachIntent("NewSession");
 
       // Check for User Data in Session Attributes
     var userName = this.attributes['userName'];
@@ -45,9 +44,9 @@ const handlers = {
       if (userName) {
         this.attributes['userName'] = userName;
 
-        this.emit(':ask', `Ok ${userName} ! Let\'s get started.`, 'say <break time="1s"/> "start" <break time="1s"/>  to start a contest');
+        this.emit(':ask', `Ok ${userName} ! Let\'s get started.`, `say <break time="0.5s"/> "start" <break time="0.5s"/>  to start a contest`);
       } else {
-        this.emit(':ask', 'Sorry, I didn\'t recognise that name!', 'Tell me your name by saying: My name is, and then your name.');
+        this.emit(':ask', `Sorry, I didn\'t recognise that name!`, `Tell me your name by saying: My name is, and then your name.`);
       }
     },
     'StartIntent': function () {
@@ -57,8 +56,8 @@ const handlers = {
         var number = word.trim().length;
 
         this.emit(':ask',
-            `we\'re looking for a word of ${number} letters <break time="2s"/>  <say-as interpret-as="spell-out">${word}</say-as>` ,
-            'I repeat <break time="1s"/>  <say-as interpret-as="spell-out">${word}</say-as>');
+            `we\'re looking for a word of ${number} letters <break time="1s"/>  <say-as interpret-as="spell-out">${word}</say-as>` ,
+            `I repeat <break time="0.5s"/>  <say-as interpret-as="spell-out">${word}</say-as>`);
     },
     'AnswerIntent': function () {
 
@@ -70,16 +69,17 @@ const handlers = {
         var answer = this.event.request.intent.slots.wordAnswer.value;
 
         if (!word){
-            this.emit(':ask', ${userName} + ' start a contest by sating <break time="1s"/>  start', 'say <break time="1s"/>  start <break time="1s"/>  to start a contest.');
+            this.emit(':ask', `${userName} + start a contest by sating <break time="0.5s"/>  start`, `say <break time="0.5s"/>  start <break time="0.5s"/>  to start a contest.`);
         } else if (!answer){
-            this.emit(':ask', `I couldn\'t catch your answer ${userName} <break time="1s"/>  please repeat it`, 'please repeat your answer.');
+            this.emit(':ask', `I couldn\'t catch your answer ${userName} <break time="0.5s"/>  please repeat it`, `please repeat your answer.`);
         } else {
+            this.attributes['word'] = undefined;
             if (word.trim().toLowerCase() === answer.trim().toLowerCase()){
-                this.emit(':ask', `Congratulations ${userName} <break time="1s"/>  you found the word ${word}. say <break time="1s"/>  start <break time="1s"/>  to start another contest.`,
-                    'say <break time="1s"/>  start <break time="1s"/>  to start another contest.');
+                this.emit(':ask', `Congratulations ${userName} <break time="0.5s"/>  you found the word ${word}. say <break time="0.5s"/>  start <break time="0.5s"/>  to start another contest.`,
+                    `say <break time="0.5s"/>  start <break time="0.5s"/>  to start another contest.`);
             } else {
-                this.emit(':ask', `Sorry ${userName} <break time="1s"/>  you said ${answer} but the answer was ${word}. say <break time="1s"/>  start <break time="1s"/>  to start another contest.`,
-                    'say <break time="1s"/>  start <break time="1s"/>  to start another contest.');
+                this.emit(':ask', `Sorry ${userName} <break time="0.5s"/>  you said ${answer} but the answer was ${word}. say <break time="0.5s"/>  start <break time="0.5s"/>  to start another contest.`,
+                    `say <break time="0.5s"/>  start <break time="0.5s"/>  to start another contest.`);
             }
         }
     },
@@ -97,20 +97,19 @@ const handlers = {
             if (userName) {
                 this.emit(':tell', `Bye ${userName}!`);
             } else {
-                this.emit(':tell', 'OK bye');
+                this.emit(':tell', `OK bye`);
             }
         }
 
 };
 
+
 exports.handler = function (event, context, callback) {
     var alexa = Alexa.handler(event, context, callback);
     alexa.appId = appId;
     // one new line to reference the DynamoDB table
-    alexa.dynamoDBTableName = 'HelloWorld';
+    alexa.dynamoDBTableName = 'SpellingContest';
     alexa.registerHandlers(handlers);
-    eventSourcing(event.request).save();
+    eventSourcing(event).save();
     alexa.execute();
 };
-
-
