@@ -1,2 +1,136 @@
+AnswerIntent (I think/probably/maybe/perhaps/ ) (my/the/an/a) answer is {answer}
+AnswerIntent (I think/probably/maybe/perhaps/ ) (is it/it is/it's/this is/that is/that's/is that/is this/ ) {answer}
+StartIntent (please/ ) (start/let's go/begin/commence/launch/raise) ( /the contest/the game/the match/it)
+
+
+
 NameCapture my name is {USFirstName}
 NameCapture my name is {UKFirstName}
+
+AnswerIntent I think a answer is {answer}
+AnswerIntent I think an answer is {answer}
+AnswerIntent I think is it {answer}
+AnswerIntent I think is that {answer}
+AnswerIntent I think is this {answer}
+AnswerIntent I think it is {answer}
+AnswerIntent I think it's {answer}
+AnswerIntent I think my answer is {answer}
+AnswerIntent I think that is {answer}
+AnswerIntent I think that's {answer}
+AnswerIntent I think the answer is {answer}
+AnswerIntent I think this is {answer}
+AnswerIntent I think {answer}
+AnswerIntent a answer is {answer}
+AnswerIntent an answer is {answer}
+AnswerIntent is it {answer}
+AnswerIntent is that {answer}
+AnswerIntent is this {answer}
+AnswerIntent it is {answer}
+AnswerIntent it's {answer}
+AnswerIntent maybe a answer is {answer}
+AnswerIntent maybe an answer is {answer}
+AnswerIntent maybe is it {answer}
+AnswerIntent maybe is that {answer}
+AnswerIntent maybe is this {answer}
+AnswerIntent maybe it is {answer}
+AnswerIntent maybe it's {answer}
+AnswerIntent maybe my answer is {answer}
+AnswerIntent maybe that is {answer}
+AnswerIntent maybe that's {answer}
+AnswerIntent maybe the answer is {answer}
+AnswerIntent maybe this is {answer}
+AnswerIntent maybe {answer}
+AnswerIntent my answer is {answer}
+AnswerIntent perhaps a answer is {answer}
+AnswerIntent perhaps an answer is {answer}
+AnswerIntent perhaps is it {answer}
+AnswerIntent perhaps is that {answer}
+AnswerIntent perhaps is this {answer}
+AnswerIntent perhaps it is {answer}
+AnswerIntent perhaps it's {answer}
+AnswerIntent perhaps my answer is {answer}
+AnswerIntent perhaps that is {answer}
+AnswerIntent perhaps that's {answer}
+AnswerIntent perhaps the answer is {answer}
+AnswerIntent perhaps this is {answer}
+AnswerIntent perhaps {answer}
+AnswerIntent probably a answer is {answer}
+AnswerIntent probably an answer is {answer}
+AnswerIntent probably is it {answer}
+AnswerIntent probably is that {answer}
+AnswerIntent probably is this {answer}
+AnswerIntent probably it is {answer}
+AnswerIntent probably it's {answer}
+AnswerIntent probably my answer is {answer}
+AnswerIntent probably that is {answer}
+AnswerIntent probably that's {answer}
+AnswerIntent probably the answer is {answer}
+AnswerIntent probably this is {answer}
+AnswerIntent probably {answer}
+AnswerIntent that is {answer}
+AnswerIntent that's {answer}
+AnswerIntent the answer is {answer}
+AnswerIntent this is {answer}
+AnswerIntent {answer}
+
+
+StartIntent begin
+StartIntent begin it
+StartIntent begin the contest
+StartIntent begin the game
+StartIntent begin the match
+StartIntent commence
+StartIntent commence it
+StartIntent commence the contest
+StartIntent commence the game
+StartIntent commence the match
+StartIntent launch
+StartIntent launch it
+StartIntent launch the contest
+StartIntent launch the game
+StartIntent launch the match
+StartIntent let's go
+StartIntent let's go it
+StartIntent let's go the contest
+StartIntent let's go the game
+StartIntent let's go the match
+StartIntent please begin
+StartIntent please begin it
+StartIntent please begin the contest
+StartIntent please begin the game
+StartIntent please begin the match
+StartIntent please commence
+StartIntent please commence it
+StartIntent please commence the contest
+StartIntent please commence the game
+StartIntent please commence the match
+StartIntent please launch
+StartIntent please launch it
+StartIntent please launch the contest
+StartIntent please launch the game
+StartIntent please launch the match
+StartIntent please let's go
+StartIntent please let's go it
+StartIntent please let's go the contest
+StartIntent please let's go the game
+StartIntent please let's go the match
+StartIntent please raise
+StartIntent please raise it
+StartIntent please raise the contest
+StartIntent please raise the game
+StartIntent please raise the match
+StartIntent please start
+StartIntent please start it
+StartIntent please start the contest
+StartIntent please start the game
+StartIntent please start the match
+StartIntent raise
+StartIntent raise it
+StartIntent raise the contest
+StartIntent raise the game
+StartIntent raise the match
+StartIntent start
+StartIntent start it
+StartIntent start the contest
+StartIntent start the game
+StartIntent start the match
