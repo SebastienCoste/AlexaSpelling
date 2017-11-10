@@ -12,12 +12,13 @@ module.exports = (function() {
             if(!doc) {
                 doc = new aws.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
             }
+            let eventKey = {};
+
+            eventKey[pkName] = pk;
+            eventKey[skName] = sk;
 
             var params = {
-                Key: {
-                    pkName: pk,
-                    skName: sk
-                },
+                Key: eventKey,
                 TableName: table,
                 ConsistentRead: false
             };
@@ -43,7 +44,7 @@ module.exports = (function() {
                     if(isEmptyObject(data)) {
                         callback(null, {});
                     } else {
-                        callback(null, data.Item.mapAttr);
+                        callback(null, data.Item);
                     }
                 }
             });

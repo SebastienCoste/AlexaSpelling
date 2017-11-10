@@ -6,7 +6,7 @@ Train yourself to recognize spelled wordAnswer
 Current available intents:
 
 ## NameCapture
-To make ALexa remember your Name
+To make Alexa remember your name
 ```
 NameCapture (please/ ) (no/to/ ) (call me/you can call me/my name is/I am/I'm/ ) ({USFirstName}/{UKFirstName}) (please/ )
 ```
