@@ -47,7 +47,8 @@ const handlers = {
     },
     'StartIntent': function () {
         var word = getAWord();
-        this.attributes['userName'] = word;
+        this.attributes['word'] = word;
+
 
         this.emit(':ask',
             `we\'re looking for a word of ${number} letters <break time="2s"/>  <say-as interpret-as="spell-out">${word}</say-as>` ,
@@ -60,7 +61,8 @@ const handlers = {
             userName = "";
         }
         var word = this.attributes['word'];
-        var answer = this.attributes['answer'];
+        var answer = this.event.request.intent.slots.wordAnswer.value;
+
         if (!word){
             this.emit(':ask', ${userName} + ' start a contest by sating <break time="1s"/>  start', 'say <break time="1s"/>  start <break time="1s"/>  to start a contest.');
         } else if (!answer){

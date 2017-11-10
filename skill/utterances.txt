@@ -1,77 +1,100 @@
-AnswerIntent (I think/probably/maybe/perhaps/ ) (my/the/an/a) answer is {answer}
-AnswerIntent (I think/probably/maybe/perhaps/ ) (is it/it is/it's/this is/that is/that's/is that/is this/ ) {answer}
+AnswerIntent (I think/probably/maybe/perhaps/ ) (my/the/an/a) answer is {wordAnswer}
+AnswerIntent (I think/probably/maybe/perhaps/ ) (is it/it is/it's/this is/that is/that's/is that/is this/ ) {wordAnswer}
 StartIntent (please/ ) (start/let's go/begin/commence/launch/raise) ( /the contest/the game/the match/it)
+NameCapture (please/ ) (call me/you can call me/my name is/I am/I'm/ ) ({USFirstName}/{UKFirstName})
 
 
-
-NameCapture my name is {USFirstName}
+NameCapture I am {UKFirstName}
+NameCapture I am {USFirstName}
+NameCapture I'm {UKFirstName}
+NameCapture I'm {USFirstName}
+NameCapture call me {UKFirstName}
+NameCapture call me {USFirstName}
 NameCapture my name is {UKFirstName}
+NameCapture my name is {USFirstName}
+NameCapture please I am {UKFirstName}
+NameCapture please I am {USFirstName}
+NameCapture please I'm {UKFirstName}
+NameCapture please I'm {USFirstName}
+NameCapture please call me {UKFirstName}
+NameCapture please call me {USFirstName}
+NameCapture please my name is {UKFirstName}
+NameCapture please my name is {USFirstName}
+NameCapture please you can call me {UKFirstName}
+NameCapture please you can call me {USFirstName}
+NameCapture please {UKFirstName}
+NameCapture please {USFirstName}
+NameCapture you can call me {UKFirstName}
+NameCapture you can call me {USFirstName}
+NameCapture {UKFirstName}
+NameCapture {USFirstName}
 
-AnswerIntent I think a answer is {answer}
-AnswerIntent I think an answer is {answer}
-AnswerIntent I think is it {answer}
-AnswerIntent I think is that {answer}
-AnswerIntent I think is this {answer}
-AnswerIntent I think it is {answer}
-AnswerIntent I think it's {answer}
-AnswerIntent I think my answer is {answer}
-AnswerIntent I think that is {answer}
-AnswerIntent I think that's {answer}
-AnswerIntent I think the answer is {answer}
-AnswerIntent I think this is {answer}
-AnswerIntent I think {answer}
-AnswerIntent a answer is {answer}
-AnswerIntent an answer is {answer}
-AnswerIntent is it {answer}
-AnswerIntent is that {answer}
-AnswerIntent is this {answer}
-AnswerIntent it is {answer}
-AnswerIntent it's {answer}
-AnswerIntent maybe a answer is {answer}
-AnswerIntent maybe an answer is {answer}
-AnswerIntent maybe is it {answer}
-AnswerIntent maybe is that {answer}
-AnswerIntent maybe is this {answer}
-AnswerIntent maybe it is {answer}
-AnswerIntent maybe it's {answer}
-AnswerIntent maybe my answer is {answer}
-AnswerIntent maybe that is {answer}
-AnswerIntent maybe that's {answer}
-AnswerIntent maybe the answer is {answer}
-AnswerIntent maybe this is {answer}
-AnswerIntent maybe {answer}
-AnswerIntent my answer is {answer}
-AnswerIntent perhaps a answer is {answer}
-AnswerIntent perhaps an answer is {answer}
-AnswerIntent perhaps is it {answer}
-AnswerIntent perhaps is that {answer}
-AnswerIntent perhaps is this {answer}
-AnswerIntent perhaps it is {answer}
-AnswerIntent perhaps it's {answer}
-AnswerIntent perhaps my answer is {answer}
-AnswerIntent perhaps that is {answer}
-AnswerIntent perhaps that's {answer}
-AnswerIntent perhaps the answer is {answer}
-AnswerIntent perhaps this is {answer}
-AnswerIntent perhaps {answer}
-AnswerIntent probably a answer is {answer}
-AnswerIntent probably an answer is {answer}
-AnswerIntent probably is it {answer}
-AnswerIntent probably is that {answer}
-AnswerIntent probably is this {answer}
-AnswerIntent probably it is {answer}
-AnswerIntent probably it's {answer}
-AnswerIntent probably my answer is {answer}
-AnswerIntent probably that is {answer}
-AnswerIntent probably that's {answer}
-AnswerIntent probably the answer is {answer}
-AnswerIntent probably this is {answer}
-AnswerIntent probably {answer}
-AnswerIntent that is {answer}
-AnswerIntent that's {answer}
-AnswerIntent the answer is {answer}
-AnswerIntent this is {answer}
-AnswerIntent {answer}
+
+AnswerIntent I think a answer is {wordAnswer}
+AnswerIntent I think an answer is {wordAnswer}
+AnswerIntent I think is it {wordAnswer}
+AnswerIntent I think is that {wordAnswer}
+AnswerIntent I think is this {wordAnswer}
+AnswerIntent I think it is {wordAnswer}
+AnswerIntent I think it's {wordAnswer}
+AnswerIntent I think my answer is {wordAnswer}
+AnswerIntent I think that is {wordAnswer}
+AnswerIntent I think that's {wordAnswer}
+AnswerIntent I think the answer is {wordAnswer}
+AnswerIntent I think this is {wordAnswer}
+AnswerIntent I think {wordAnswer}
+AnswerIntent a answer is {wordAnswer}
+AnswerIntent an answer is {wordAnswer}
+AnswerIntent is it {wordAnswer}
+AnswerIntent is that {wordAnswer}
+AnswerIntent is this {wordAnswer}
+AnswerIntent it is {wordAnswer}
+AnswerIntent it's {wordAnswer}
+AnswerIntent maybe a answer is {wordAnswer}
+AnswerIntent maybe an answer is {wordAnswer}
+AnswerIntent maybe is it {wordAnswer}
+AnswerIntent maybe is that {wordAnswer}
+AnswerIntent maybe is this {wordAnswer}
+AnswerIntent maybe it is {wordAnswer}
+AnswerIntent maybe it's {wordAnswer}
+AnswerIntent maybe my answer is {wordAnswer}
+AnswerIntent maybe that is {wordAnswer}
+AnswerIntent maybe that's {wordAnswer}
+AnswerIntent maybe the answer is {wordAnswer}
+AnswerIntent maybe this is {wordAnswer}
+AnswerIntent maybe {wordAnswer}
+AnswerIntent my answer is {wordAnswer}
+AnswerIntent perhaps a answer is {wordAnswer}
+AnswerIntent perhaps an answer is {wordAnswer}
+AnswerIntent perhaps is it {wordAnswer}
+AnswerIntent perhaps is that {wordAnswer}
+AnswerIntent perhaps is this {wordAnswer}
+AnswerIntent perhaps it is {wordAnswer}
+AnswerIntent perhaps it's {wordAnswer}
+AnswerIntent perhaps my answer is {wordAnswer}
+AnswerIntent perhaps that is {wordAnswer}
+AnswerIntent perhaps that's {wordAnswer}
+AnswerIntent perhaps the answer is {wordAnswer}
+AnswerIntent perhaps this is {wordAnswer}
+AnswerIntent perhaps {wordAnswer}
+AnswerIntent probably a answer is {wordAnswer}
+AnswerIntent probably an answer is {wordAnswer}
+AnswerIntent probably is it {wordAnswer}
+AnswerIntent probably is that {wordAnswer}
+AnswerIntent probably is this {wordAnswer}
+AnswerIntent probably it is {wordAnswer}
+AnswerIntent probably it's {wordAnswer}
+AnswerIntent probably my answer is {wordAnswer}
+AnswerIntent probably that is {wordAnswer}
+AnswerIntent probably that's {wordAnswer}
+AnswerIntent probably the answer is {wordAnswer}
+AnswerIntent probably this is {wordAnswer}
+AnswerIntent probably {wordAnswer}
+AnswerIntent that is {wordAnswer}
+AnswerIntent that's {wordAnswer}
+AnswerIntent the answer is {wordAnswer}
+AnswerIntent this is {wordAnswer}
+AnswerIntent {wordAnswer}
 
 
 StartIntent begin

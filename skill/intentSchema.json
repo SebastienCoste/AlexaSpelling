@@ -14,7 +14,16 @@
       ]
     },
     {
-      "intent": "AlexaMeetupNumbers"
+      "intent": "StartIntent"
+    },
+    {
+      "intent": "AnswerIntent",
+      "slots": [
+        {
+          "name": "wordAnswer",
+          "type": "word"
+        }
+      ]
     },
     {
       "intent": "AMAZON.StopIntent"
