@@ -10,23 +10,30 @@ const eventSourcing = require('./Event/event');
 
 const appId = "amzn1.ask.skill.11532793-2767-420b-ae38-e2ae5e5a397a";  // TODO replace with your app ID (OPTIONAL).
 
-
+function stopIt(session) {
+  let userName = session.attributes['userName'];
+      if (userName) {
+          session.emit(':tell', `Bye ${userName}!`);
+      } else {
+          session.emit(':tell', `OK bye`);
+      }
+  }
 
 const handlers = {
 
-  'NewSession': function () {
+  'NewSession': function() {
 
       // Check for User Data in Session Attributes
     let userName = this.attributes['userName'];
        if (userName) {
          // greet the user by name
-         this.emit(':ask', `Welcome back ${userName}!`,  'What would you like to do?');
+         this.emit(':ask', `Welcome back ${userName}! say <break time="0.5s"/> "start" <break time="0.5s"/>  to start a contest`,  `say <break time="0.5s"/> "start" <break time="0.5s"/>  to start a contest`);
     } else {
       // Welcome User for the First Time
       this.emit(':ask', 'Welcome to spelling contest! Say ... "my name is" ... to bind your experience to you', 'Say "my name is" to bind your experience to you');
     }
   },
-  'NameCapture': function () {
+  'NameCapture': function() {
 
       let userName = getUserName(this);
 
@@ -39,7 +46,7 @@ const handlers = {
         this.emit(':ask', `Sorry, I didn\'t recognise that name!`, `Tell me your name by saying: My name is, and then your name.`);
       }
     },
-    'StartIntent': function () {
+    'StartIntent': function() {
 
         let word = getAWord();
         this.attributes['word'] = word;
@@ -49,7 +56,7 @@ const handlers = {
             `we\'re looking for a word of ${number} letters <break time="1s"/>  <say-as interpret-as="spell-out">${word}</say-as>` ,
             `I repeat <break time="0.5s"/>  <say-as interpret-as="spell-out">${word}</say-as>`);
     },
-    'AnswerIntent': function () {
+    'AnswerIntent': function() {
 
         let userName = this.attributes['userName'];
         if (!userName){
@@ -59,7 +66,7 @@ const handlers = {
         let answer = this.event.request.intent.slots.wordAnswer.value;
 
         if (!word){
-            this.emit(':ask', `${userName} + start a contest by sating <break time="0.5s"/>  start`, `say <break time="0.5s"/>  start <break time="0.5s"/>  to start a contest.`);
+            this.emit(':ask', `${userName} start a contest by sating <break time="0.5s"/>  start`, `say <break time="0.5s"/>  start <break time="0.5s"/>  to start a contest.`);
         } else if (!answer){
             this.emit(':ask', `I couldn\'t catch your answer ${userName} <break time="0.5s"/>  please repeat it`, `please repeat your answer.`);
         } else {
@@ -73,25 +80,37 @@ const handlers = {
             }
         }
     },
-    'AMAZON.HelpIntent': function () {
+    'StopIntent': function() {
+      stopIt(this);
+    },
+    'RepeatIntent': function() {
+
+      let word = this.attributes['word'];
+      if (!word){
+          this.emit(':ask', `${userName} start a contest by sating <break time="0.5s"/>  start`, `say <break time="0.5s"/>  start <break time="0.5s"/>  to start a contest.`);
+      } else{
+        let number = word.trim().length;
+
+        this.emit(':ask',
+            `we\'re looking for a word of ${number} letters <break time="1s"/>  <emphasis level="strong"><say-as interpret-as="spell-out">${word}</say-as></emphasis>` ,
+            `I repeat <break time="0.5s"/>  <emphasis level="strong"><say-as interpret-as="spell-out">${word}</say-as></emphasis>`);
+      }
+        this.emit(':tell', 'OK.');
+    },
+    'AMAZON.HelpIntent': function() {
 
         this.emit(':ask', 'speechOutput', 'reprompt');
     },
-    'AMAZON.CancelIntent': function () {
+    'AMAZON.CancelIntent': function() {
 
         this.emit(':tell', 'OK.');
     },
-    'AMAZON.StopIntent': function () {
-
-        let userName = this.attributes['userName'];
-            if (userName) {
-                this.emit(':tell', `Bye ${userName}!`);
-            } else {
-                this.emit(':tell', `OK bye`);
-            }
-        }
+    'AMAZON.StopIntent': function() {
+      stopIt(this);
+    }
 
 };
+
 
 
 exports.handler = function (event, context, callback) {

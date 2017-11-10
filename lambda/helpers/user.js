@@ -11,14 +11,16 @@ module.exports = function getUserName(data) {
     let UKFirstNameSlot = data.event.request.intent.slots.UKFirstName.value;
 
     if (USFirstNameSlot) {
+      console.log("return " + USFirstNameSlot);
       return USFirstNameSlot;
     } else if (UKFirstNameSlot) {
+      console.log("return " + UKFirstNameSlot);
       return UKFirstNameSlot;
     }
   }
 
-  if ( data.session && data.session.attributes && data.session.attributes['userName']){
-    return data.session.attributes['userName'];
+  if ( data.event.session && data.event.session.attributes && data.event.session.attributes['userName']){
+    return data.event.session.attributes['userName'];
   }
 
   return undefined;
