@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "response": {
+    "outputSpeech": {
+      "ssml": "<speak> Ok sébastien ! Let's get started. </speak>",
+      "type": "SSML"
+    },
+    "reprompt": {
+      "outputSpeech": {
+        "ssml": "<speak> say ... \"start\" ... to start a contest </speak>",
+        "type": "SSML"
+      }
+    },
+    "speechletResponse": {
+      "outputSpeech": {
+        "ssml": "<speak> Ok sébastien ! Let's get started. </speak>"
+      },
+      "reprompt": {
+        "outputSpeech": {
+          "ssml": "<speak> say ... \"start\" ... to start a contest </speak>"
+        }
+      },
+      "shouldEndSession": false
+    }
+  },
+  "sessionAttributes": {
+    "userName": "sébastien"
+  }
+}
