@@ -109,7 +109,10 @@ const handlers =  {
     },
     'AMAZON.HelpIntent': function() {
 
-        this.emit(':ask', 'speechOutput', 'reprompt');
+        this.emit(':ask', `say <break time="0.5s"/>start <break time="0.5s"/> to start a game, or` +
+         ` <break time="0.5s"/> my name is <break time="0.5s"/> to save your name`,
+         `say <break time="0.5s"/>start <break time="0.5s"/> to start a game, or` +
+          ` <break time="0.5s"/> my name is <break time="0.5s"/> to save your name`);
     },
     'AMAZON.CancelIntent': function() {
 
@@ -117,6 +120,12 @@ const handlers =  {
     },
     'AMAZON.StopIntent': function() {
       stopIt(this);
+    },
+    'SessionEndedRequest': function (){
+      this.attributes['previousWord'] = undefined;
+      this.attributes['previousAnswer'] = undefined;
+      this.attributes['word'] = undefined;
+      this.emit(':saveState', true); //Save the state when user quits
     }
 
 };
