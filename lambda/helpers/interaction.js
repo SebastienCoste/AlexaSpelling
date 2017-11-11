@@ -83,6 +83,10 @@ module.exports = (function(){
 
       repeatQuestion: (session) => {
         let word = session.attributes['word'];
+        let userName = session.attributes['userName'];
+        if (!userName){
+            userName = "";
+        }
         if (!word){
             session.emit(':ask', `${userName} start a contest by sating <break time="0.5s"/>  start`, `say <break time="0.5s"/>  start <break time="0.5s"/>  to start a contest.`);
         } else{
