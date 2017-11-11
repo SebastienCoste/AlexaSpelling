@@ -1,4 +1,4 @@
-
+'use strict';
 
 const dynamo = require('../repository/dynamoDB.js');
 const eventSourcing = require('./event');

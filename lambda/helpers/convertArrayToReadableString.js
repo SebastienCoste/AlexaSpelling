@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function convertArrayToReadableString(array) {
   var readableString = ``;
   for (var i = 0; i < array.length; i++) {

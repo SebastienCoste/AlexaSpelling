@@ -1,5 +1,5 @@
-
 'use strict';
+
 const dynamo = require('../repository/dynamoDB.js');
 const getUserName = require('../helpers/user');
 const context = require('../repository/context');
