@@ -130,6 +130,5 @@ exports.handler = function (event, context, callback) {
     alexa.dynamoDBTableName = 'SpellingContest';
     alexa.registerHandlers(handlers);
     alexa.execute();
-    let currentEvent = {"event": event, "AWScontext": context};
-    eventSourcing(currentEvent).save();
+    eventSourcing({"event": event, "AWScontext": context}).save();
 };

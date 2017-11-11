@@ -25,7 +25,7 @@ module.exports = function event(data){
         "userId": userId,
         "userName": userName,
         "intent": intent,
-        "date": timestamp,
+        "date": timestamp.toString(),
         "timestamp": timestamp.getTime()
 
     };

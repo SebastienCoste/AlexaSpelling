@@ -8,7 +8,7 @@ const context = require('../repository/context');
 module.exports = (function(){
 
     return {
-      load = (pk) => {
+      loadEvent = (pk) => {
           dynamo.get(context.getEventTableName(), context.getPkName(), pk, (err, data) =>
             {
                 if (!err && data){
@@ -18,5 +18,5 @@ module.exports = (function(){
         );
       }
     };
-    
+
 }) ();
