@@ -15,7 +15,6 @@ const identificationHandlers = require('./state/identificationHandler');
 exports.handler = function (event, context, callback) {
     let alexa = Alexa.handler(event, context, callback);
     alexa.appId = appId;
-    // one new line to reference the DynamoDB table
     alexa.dynamoDBTableName = sessionTable;
     alexa.registerHandlers(
           identificationHandlers,

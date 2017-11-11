@@ -7,24 +7,37 @@
           "examplePhrases": [
             "Alexa open spelling",
             "Alexa tell spelling my name is Jeff",
-            "Alexa tell spelling to start a game"
+            "Alexa ask spelling to start a game"
+          ],
+          "keywords": [
+            "spelling",
+            "english"
           ],
           "name": "Spelling contest",
-          "description": "Spelling contest: test your english"
+          "smallIconUri": "https://api.amazonalexa.com/v0/skills/amzn1.ask.skill.b6e260ca-3a10-4b38-b4fd-d2c704f9b1ef/images/eyJkIjoiY2x1WG95VExnbUlkK2QweXFTdUYyMG9WekJhT0dtTjhlV3I2OGV2N1pnNURQRzllNC9wZzNpZEFjQ2pOVmRwTmxaYkluTmlqSWFYZjNYOFpncXZjeVY4d01VSHVlUkJFUkZOS0FEak1CQm56STJrQnNVWUI5M05LMnRYWkVKUU4iLCJpdiI6IldxdGdUT3M3VFBRRzNhaVFxUC9EQVE9PSIsInYiOjF9",
+          "description": "Spelling contest: test your english. Give your name and join the contest on your english understanding. Say my name is and your name to join the contest, then ask the skill to start a game. If needed, you can ask Alexa to repeat, she will do it slowerly. Change your name at any time between questions to let your friends joining the contest. Next  features to come: spelling of numbers, and access to leaderboard.",
+          "largeIconUri": "https://api.amazonalexa.com/v0/skills/amzn1.ask.skill.b6e260ca-3a10-4b38-b4fd-d2c704f9b1ef/images/eyJkIjoid3d5NXpUSWVnM3FDdVFhZFhYamh4TWhiNnN1YW0vTTcxbVViTVYwR1pWT28yUmthMTdhS1BwMjBMYUFuT1ZsZ3QrRzFTRWhGR3h6M0k5MVgzUTFpckFBSzdTa2FFUy9oSzd5ckVVd2YvdEhCLzFldU1xQnVKWDlzbmpQS1lXWkt6dUFrUUVlN0RORXREemt4ZUxwTXB3PT0iLCJpdiI6ImJPbmtFZndBTzZlZWtBcTg0WGIxL0E9PSIsInYiOjF9"
         }
       },
       "isAvailableWorldwide": true,
-      "testingInstructions": "Ask for a spelling and guess the word spelled.",
+      "testingInstructions": "Spelling contest: test your english. Give your name and join the contest on your english understanding. Say my name is and your name to join the contest, then ask the skill to start a game. If needed, you can ask Alexa to repeat, she will do it slowerly. Change your name at any time between questions to let your friends joining the contest. Next  features to come: spelling of numbers, and access to leaderboard.\n\nTo run, the skill uses 1 lambda and 2 dynamo DBs: 1 to store the session, and 1 to store the events. THeses tables are linked to the lambda, so they should not be duplicated by user.",
       "category": "EDUCATION_AND_REFERENCE",
       "distributionCountries": []
     },
     "apis": {
       "custom": {
         "endpoint": {
-          "uri": "arn:aws:lambda:eu-west-1:398750413546:function:AlexaSpelling"
+          "sourceDir": "lambda\\custom"
         }
       }
     },
-    "manifestVersion": "1.0"
+    "manifestVersion": "1.0",
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "isExportCompliant": true,
+      "containsAds": false,
+      "isChildDirected": false,
+      "usesPersonalInfo": false
+    }
   }
 }
