@@ -1,5 +1,11 @@
 {
   "author": "scoste",
+  "name": "spelling-contest-skill",
+  "version": "1.0.0",
+  "description": "Spelling contest: test your englishl",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "alexa-sdk": "^1.0.19"
   }

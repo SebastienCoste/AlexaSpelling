@@ -1,0 +1,30 @@
+{
+  "skillManifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "summary": "Spelling contest: test your english",
+          "examplePhrases": [
+            "Alexa open spelling",
+            "Alexa tell spelling my name is Jeff",
+            "Alexa tell spelling to start a game"
+          ],
+          "name": "Spelling contest",
+          "description": "Spelling contest: test your english"
+        }
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "Ask for a spelling and guess the word spelled.",
+      "category": "EDUCATION_AND_REFERENCE",
+      "distributionCountries": []
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "arn:aws:lambda:eu-west-1:398750413546:function:AlexaSpelling"
+        }
+      }
+    },
+    "manifestVersion": "1.0"
+  }
+}

@@ -1,7 +1,6 @@
 {
   "intents": [
     {
-      "intent": "NameCapture",
       "slots": [
         {
           "name": "USFirstName",
@@ -11,19 +10,26 @@
           "name": "UKFirstName",
           "type": "AMAZON.GB_FIRST_NAME"
         }
-      ]
+      ],
+      "intent": "NameCapture"
     },
     {
       "intent": "StartIntent"
     },
     {
-      "intent": "AnswerIntent",
       "slots": [
         {
           "name": "wordAnswer",
           "type": "word"
         }
-      ]
+      ],
+      "intent": "AnswerIntent"
+    },
+    {
+      "intent": "RepeatIntent"
+    },
+    {
+      "intent": "StopIntent"
     },
     {
       "intent": "AMAZON.StopIntent"
