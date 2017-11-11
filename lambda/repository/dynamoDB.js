@@ -4,7 +4,7 @@ var doc;
 
 module.exports = (function() {
     return {
-        get: function(newTableParams, table, pkName, pk, skName, sk, callback) {
+        get: function(table, pkName, pk, skName, sk, callback) {
             if(!table) {
                 callback('DynamoDB Table name is not set.', null);
             }
@@ -15,7 +15,9 @@ module.exports = (function() {
             let eventKey = {};
 
             eventKey[pkName] = pk;
-            eventKey[skName] = sk;
+            if (skName && sk){
+              eventKey[skName] = sk;
+            }
 
             var params = {
                 Key: eventKey,
@@ -27,19 +29,7 @@ module.exports = (function() {
                 if(err) {
                     console.log('get error: ' + JSON.stringify(err, null, 4));
 
-                    if(err.code === 'ResourceNotFoundException' && newTableParams) {
-                        var dynamoClient = new aws.DynamoDB();
-                        newTableParams.TableName = table;
-                        dynamoClient.createTable(newTableParams, function (err, data) {
-                            if(err) {
-                                console.log('Error creating table: ' + JSON.stringify(err, null, 4));
-                            }
-                            console.log('Creating table ' + table + ':\n' + JSON.stringify(data));
-                            callback(err, {});
-                        });
-                    } else {
-                        callback(err, null);
-                    }
+
                 } else {
                     if(isEmptyObject(data)) {
                         callback(null, {});
@@ -50,7 +40,7 @@ module.exports = (function() {
             });
         },
 
-        set: function(table, eventContext, callback) {
+        set: function(table, newTableParams, eventContext, callback) {
             if(!table) {
                 callback('DynamoDB Table name is not set.', null);
             }
@@ -66,14 +56,35 @@ module.exports = (function() {
             };
 
             doc.put(params, function(err, data) {
-                if(err) {
-                    console.log('Error during DynamoDB put:' + err);
-                }
-                callback(err, data);
+                if(err && err.code === 'ResourceNotFoundException' && newTableParams) {
+                    var dynamoClient = new aws.DynamoDB();
+                    newTableParams.TableName = table;
+                    dynamoClient.createTable(newTableParams, function (err, data) {
+                        if(err) {
+                            console.log('Error creating table: ' + JSON.stringify(err, null, 4));
+                            return callback(err, {});
+                        }else {
+                            console.log('Creating table ' + table + ':\n' + JSON.stringify(data));
+                            doc.put(params, function(err, data) {
+                              if(err) {
+                                  console.log('Error during DynamoDB put:' + err);
+                                  return callback(err, {});
+                              } else {
+                                return callback(err, data);
+                              }
+                            });
+                        }
+                      });
+                    } else if (err){
+                        return callback(err, null);
+                    } else {
+                        return callback(err, data);
+                    }
+
             });
         }
     };
-})();
+}) ();
 
 function isEmptyObject(obj) {
     return !Object.keys(obj).length;

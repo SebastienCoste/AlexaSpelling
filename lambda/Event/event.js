@@ -2,36 +2,7 @@
 'use strict';
 const dynamo = require('../repository/dynamoDB.js');
 const getUserName = require('../helpers/user');
-
-const tableName = "SpellingContestEvent";
-
-const newTableParams = {
-    AttributeDefinitions: [
-        {
-            AttributeName: 'userId',
-            AttributeType: 'S'
-        },
-        {
-            AttributeName: 'userName',
-            AttributeType: 'S'
-        }
-    ],
-    KeySchema: [
-        {
-            AttributeName: 'userId',
-            KeyType: 'HASH'
-        },
-        {
-            AttributeName: 'userName',
-            KeyType: 'RANGE'
-        }
-    ],
-    ProvisionedThroughput: {
-        ReadCapacityUnits: 5,
-        WriteCapacityUnits: 5
-    }
-};
-
+const context = require('../repository/context');
 
 module.exports = function event(data){
   //SpellingContestEvent
@@ -64,7 +35,7 @@ module.exports = function event(data){
     }
 
     self.save = () => {
-        dynamo.set(tableName, self,
+        dynamo.set(context.getEventTableName(), context.getEventTableSchema(), self,
         (err, data) =>
           {
             if (err){
