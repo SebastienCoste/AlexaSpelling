@@ -57,8 +57,6 @@ const handlers =  {
 
 };
 
-
-
 exports.handler = function (event, context, callback) {
     let alexa = Alexa.handler(event, context, callback);
     alexa.appId = appId;

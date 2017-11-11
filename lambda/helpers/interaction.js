@@ -1,17 +1,17 @@
 'use strict';
 
-const getUserName = require('./helpers/user');
-const getAWord = require('./helpers/words');
+const getUserName = require('./user');
+const getAWord = require('./words');
 
 module.exports = (function(){
 
     return {
       stopIt : (session) => {
 
-          this.attributes['previousWord'] = undefined;
-          this.attributes['previousAnswer'] = undefined;
-          this.attributes['word'] = undefined;
-          this.emit(':saveState', true); //Save the state when user quits
+          session.attributes['previousWord'] = undefined;
+          session.attributes['previousAnswer'] = undefined;
+          session.attributes['word'] = undefined;
+          session.emit(':saveState', true); //Save the state when user quits
           let userName = session.attributes['userName'];
           if (userName) {
               session.emit(':tell', `Bye ${userName}!`);
@@ -104,6 +104,7 @@ module.exports = (function(){
       cancel: (session) => {
         session.emit(':tell', 'OK.');
       }
+
     }
   }
 ) ();
