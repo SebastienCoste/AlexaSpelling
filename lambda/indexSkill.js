@@ -31,7 +31,7 @@ function launchRequest(session){
     }
 }
 
-const handlers = {
+const handlers =  {
 
   'NewSession': function() {
       launchRequest(this);
@@ -40,7 +40,7 @@ const handlers = {
   'LaunchRequest': function() {
       launchRequest(this);
   },
-  
+
   'NameCapture': function() {
 
       let userName = getUserName(this);
@@ -78,12 +78,14 @@ const handlers = {
         } else if (!answer){
             this.emit(':ask', `I couldn\'t catch your answer ${userName} <break time="0.5s"/>  please repeat it`, `please repeat your answer.`);
         } else {
+            this.attributes['previousWord'] = word;
+            this.attributes['previousAnswer'] = answer;
             this.attributes['word'] = undefined;
             if (word.trim().toLowerCase() === answer.trim().toLowerCase()){
                 this.emit(':ask', `Congratulations ${userName} <break time="0.5s"/>  you found the word ${word}. say <break time="0.5s"/>  start <break time="0.5s"/>  to start another contest.`,
                     `say <break time="0.5s"/>  start <break time="0.5s"/>  to start another contest.`);
             } else {
-                this.emit(':ask', `Sorry ${userName} <break time="0.5s"/>  you said ${answer} but the answer was ${word}. say <break time="0.5s"/>  start <break time="0.5s"/>  to start another contest.`,
+                this.emit(':ask', `Sorry ${userName} <break time="0.5s"/>  you said ${answer} but the answer was <emphasis level="strong">${word}</emphasis>. say <break time="0.5s"/>  start <break time="0.5s"/>  to start another contest.`,
                     `say <break time="0.5s"/>  start <break time="0.5s"/>  to start another contest.`);
             }
         }
@@ -127,6 +129,7 @@ exports.handler = function (event, context, callback) {
     // one new line to reference the DynamoDB table
     alexa.dynamoDBTableName = 'SpellingContest';
     alexa.registerHandlers(handlers);
-    eventSourcing({"event": event, "AWScontext": context}).save();
     alexa.execute();
+    let currentEvent = {"event": event, "AWScontext": context};
+    eventSourcing(currentEvent).save();
 };
