@@ -9,44 +9,42 @@ const skName = "timestamp";
 const skType = 'N';
 
 const eventTableSchema = {
-    AttributeDefinitions: [
-        {
-            AttributeName: pkName,
-            AttributeType: pkType
-        },
-        {
-            AttributeName: skName,
-            AttributeType: skType
-        }
-    ],
-    KeySchema: [
-        {
-            AttributeName: pkName,
-            KeyType: 'HASH'
-        },
-        {
-            AttributeName: skName,
-            KeyType: 'RANGE'
-        }
-    ],
-    ProvisionedThroughput: {
-        ReadCapacityUnits: 5,
-        WriteCapacityUnits: 5
+  AttributeDefinitions: [{
+      AttributeName: pkName,
+      AttributeType: pkType
+    },
+    {
+      AttributeName: skName,
+      AttributeType: skType
     }
+  ],
+  KeySchema: [{
+      AttributeName: pkName,
+      KeyType: 'HASH'
+    },
+    {
+      AttributeName: skName,
+      KeyType: 'RANGE'
+    }
+  ],
+  ProvisionedThroughput: {
+    ReadCapacityUnits: 5,
+    WriteCapacityUnits: 5
+  }
 };
 
-module.exports = (function(){
+module.exports = (function() {
 
-    return {
-      getEventTableName: () => {
-          return eventTableName;
-      },
-      getEventTableSchema: () => {
-          return eventTableSchema;
-      },
-      getPkName: () => {
-          return pkName;
-      }
+  return {
+    getEventTableName: () => {
+      return eventTableName;
+    },
+    getEventTableSchema: () => {
+      return eventTableSchema;
+    },
+    getPkName: () => {
+      return pkName;
+    }
 
-    };
-}) ();
+  };
+})();

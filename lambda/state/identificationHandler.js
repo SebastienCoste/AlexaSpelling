@@ -7,29 +7,29 @@ const stateContext = require('./stateContext');
 
 const identificationHandler = Alexa.CreateStateHandler(stateContext.states.IDENTIFICATION, {
   'NewSession': function() {
-      interaction.newSession(this);
+    interaction.newSession(this);
   },
   'NameCapture': function() {
-      interaction.captureName(this);
+    interaction.captureName(this);
   },
 
   'AMAZON.HelpIntent': function() {
-      interaction.helpIdentification(this);
+    interaction.helpIdentification(this);
   },
   'AMAZON.CancelIntent': function() {
-      interaction.cancel(this);
+    interaction.cancel(this);
   },
   'AMAZON.StopIntent': function() {
-      interaction.stopIt(this);
+    interaction.stopIt(this);
   },
   'StopIntent': function() {
-      interaction.stopIt(this);
+    interaction.stopIt(this);
   },
-  'SessionEndedRequest': function (){
-      interaction.stopIt(this);
+  'SessionEndedRequest': function() {
+    interaction.stopIt(this);
   },
-  'Unhandled': function(){
-      interaction.unhandled(this);
+  'Unhandled': function() {
+    interaction.unhandled(this);
   }
 });
 

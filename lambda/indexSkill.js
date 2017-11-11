@@ -12,15 +12,18 @@ const betweenQuestionsHandlers = require('./state/betweenQuestionsHandler');
 const identificationHandlers = require('./state/identificationHandler');
 
 
-exports.handler = function (event, context, callback) {
-    let alexa = Alexa.handler(event, context, callback);
-    alexa.appId = appId;
-    alexa.dynamoDBTableName = sessionTable;
-    alexa.registerHandlers(
-          identificationHandlers,
-          betweenQuestionsHandlers,
-          questionningHandlers
-    );
-    alexa.execute();
-    eventSourcing({"event": event, "AWScontext": context}).save();
+exports.handler = function(event, context, callback) {
+  let alexa = Alexa.handler(event, context, callback);
+  alexa.appId = appId;
+  alexa.dynamoDBTableName = sessionTable;
+  alexa.registerHandlers(
+    identificationHandlers,
+    betweenQuestionsHandlers,
+    questionningHandlers
+  );
+  alexa.execute();
+  eventSourcing({
+    "event": event,
+    "AWScontext": context
+  }).save();
 };

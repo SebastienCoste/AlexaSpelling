@@ -5,18 +5,18 @@ const eventSourcing = require('./event');
 const context = require('../repository/context');
 
 
-module.exports = (function(){
+module.exports = (function() {
 
-    return {
-      loadEvent = (pk) => {
-          dynamo.get(context.getEventTableName(), context.getPkName(), pk, (err, data) =>
-            {
-                if (!err && data){
-                    return data.map((e) => { eventSourcing(e)});
-                }
-            }
-        );
-      }
-    };
+  return {
+    loadEvent = (pk) => {
+      dynamo.get(context.getEventTableName(), context.getPkName(), pk, (err, data) => {
+        if (!err && data) {
+          return data.map((e) => {
+            eventSourcing(e)
+          });
+        }
+      });
+    }
+  };
 
-}) ();
+})();

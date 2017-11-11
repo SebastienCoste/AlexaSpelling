@@ -8,28 +8,28 @@ const stateContext = require('./stateContext');
 const questionningHandler = Alexa.CreateStateHandler(stateContext.states.QUESTIONNING, {
 
   'RepeatIntent': function() {
-      interaction.repeatQuestion(this);
+    interaction.repeatQuestion(this);
   },
   'AnswerIntent': function() {
-      interaction.treatAnswer(this);
+    interaction.treatAnswer(this);
   },
 
   'AMAZON.HelpIntent': function() {
-      interaction.helpQuestionning(this);
+    interaction.helpQuestionning(this);
   },
   'AMAZON.CancelIntent': function() {
-      interaction.cancel(this);
+    interaction.cancel(this);
   },
   'AMAZON.StopIntent': function() {
-      interaction.stopIt(this);
+    interaction.stopIt(this);
   },
   'StopIntent': function() {
-      interaction.stopIt(this);
+    interaction.stopIt(this);
   },
-  'SessionEndedRequest': function (){
-      interaction.stopIt(this);
+  'SessionEndedRequest': function() {
+    interaction.stopIt(this);
   },
-  'Unhandled': function(){
+  'Unhandled': function() {
     interaction.unhandled(this);
   }
 });

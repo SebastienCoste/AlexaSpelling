@@ -8,31 +8,31 @@ const stateContext = require('./stateContext');
 const betweenQuestionsHandler = Alexa.CreateStateHandler(stateContext.states.BETWEEN_QUESTIONS, {
 
   'LaunchRequest': function() {
-      interaction.launchRequest(this);
+    interaction.launchRequest(this);
   },
   'NameCapture': function() {
-      interaction.captureName(this);
+    interaction.captureName(this);
   },
   'StartIntent': function() {
-      interaction.startContest(this);
+    interaction.startContest(this);
   },
 
   'AMAZON.HelpIntent': function() {
-      interaction.helpBetweenQuestions(this);
+    interaction.helpBetweenQuestions(this);
   },
   'AMAZON.CancelIntent': function() {
-      interaction.cancel(this);
+    interaction.cancel(this);
   },
   'AMAZON.StopIntent': function() {
-      interaction.stopIt(this);
+    interaction.stopIt(this);
   },
   'StopIntent': function() {
-      interaction.stopIt(this);
+    interaction.stopIt(this);
   },
-  'SessionEndedRequest': function (){
-      interaction.stopIt(this);
+  'SessionEndedRequest': function() {
+    interaction.stopIt(this);
   },
-  'Unhandled': function(){
+  'Unhandled': function() {
     interaction.unhandled(this);
   }
 });
