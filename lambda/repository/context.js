@@ -1,24 +1,30 @@
 
 const eventTableName = "SpellingContestEvent";
 
+const pkName = "userId";
+const pkType = 'S';
+
+const skName = "timestamp";
+const skType = 'N';
+
 const eventTableSchema = {
     AttributeDefinitions: [
         {
-            AttributeName: 'userId',
-            AttributeType: 'S'
+            AttributeName: pkName,
+            AttributeType: pkType
         },
         {
-            AttributeName: 'timestamp',
-            AttributeType: 'N'
+            AttributeName: skName,
+            AttributeType: skType
         }
     ],
     KeySchema: [
         {
-            AttributeName: 'userId',
+            AttributeName: pkName,
             KeyType: 'HASH'
         },
         {
-            AttributeName: 'timestamp',
+            AttributeName: skName,
             KeyType: 'RANGE'
         }
     ],
@@ -36,6 +42,9 @@ module.exports = (function(){
       },
       getEventTableSchema: () => {
           return eventTableSchema;
+      },
+      getPkName: () => {
+          return pkName;
       }
 
     };

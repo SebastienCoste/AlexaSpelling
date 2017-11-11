@@ -19,20 +19,28 @@ function stopIt(session) {
       }
   }
 
+function launchRequest(session){
+    // Check for User Data in Session Attributes
+  let userName = session.attributes['userName'];
+     if (userName) {
+       // greet the user by name
+       session.emit(':ask', `Welcome back ${userName}! say <break time="0.5s"/> "start" <break time="0.5s"/>  to start a contest`,  `say <break time="0.5s"/> "start" <break time="0.5s"/>  to start a contest`);
+    } else {
+      // Welcome User for the First Time
+      session.emit(':ask', 'Welcome to spelling contest! Say ... "my name is" ... to bind your experience to you', 'Say "my name is" to bind your experience to you');
+    }
+}
+
 const handlers = {
 
   'NewSession': function() {
-
-      // Check for User Data in Session Attributes
-    let userName = this.attributes['userName'];
-       if (userName) {
-         // greet the user by name
-         this.emit(':ask', `Welcome back ${userName}! say <break time="0.5s"/> "start" <break time="0.5s"/>  to start a contest`,  `say <break time="0.5s"/> "start" <break time="0.5s"/>  to start a contest`);
-    } else {
-      // Welcome User for the First Time
-      this.emit(':ask', 'Welcome to spelling contest! Say ... "my name is" ... to bind your experience to you', 'Say "my name is" to bind your experience to you');
-    }
+      launchRequest(this);
   },
+
+  'LaunchRequest': function() {
+      launchRequest(this);
+  },
+  
   'NameCapture': function() {
 
       let userName = getUserName(this);
