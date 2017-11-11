@@ -7,9 +7,9 @@ const eventSourcing = require('./Event/event');
 const appId = process.env.ALEXA_APP_ID;
 const sessionTable = process.env.SESSION_TABLE;
 
-const questionningHandlers = require('./state/questionningHandlers');
-const betweenQuestionsHandlers = require('./state/betweenQuestionsHandlers');
-const identificationHandlers = require('./state/identificationHandlers');
+const questionningHandlers = require('./state/questionningHandler');
+const betweenQuestionsHandlers = require('./state/betweenQuestionsHandler');
+const identificationHandlers = require('./state/identificationHandler');
 
 
 exports.handler = function (event, context, callback) {

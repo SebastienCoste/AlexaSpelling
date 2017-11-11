@@ -3,7 +3,7 @@
 const getUserName = require('./user');
 const getAWord = require('./words');
 
-const stateContext = require('./stateContext');
+const stateContext = require('../state/stateContext');
 
 module.exports = (function(){
 
@@ -122,17 +122,13 @@ module.exports = (function(){
       },
 
       helpQuestionning: (session) => {
-        session.emit(':ask', `say <break time="0.5s"/>repeat <break time="0.5s"/> to repeat the question, or` +
-         ` answer the question if you want another`,
-         `say <break time="0.5s"/>repeat <break time="0.5s"/> to repeat the question, or` +
-         ` answer the question if you want another`,);
+        session.emit(':ask', `say <break time="0.5s"/>repeat <break time="0.5s"/> to repeat the question, or answer the question if you want another`,
+         `say <break time="0.5s"/>repeat <break time="0.5s"/> to repeat the question, or answer the question if you want another`);
       },
 
       helpBetweenQuestions: (session) => {
-        session.emit(':ask', `say <break time="0.5s"/>start <break time="0.5s"/> to start a game, or` +
-         ` <break time="0.5s"/> my name is <break time="0.5s"/> to save your name`,
-         `say <break time="0.5s"/>start <break time="0.5s"/> to start a game, or` +
-          ` <break time="0.5s"/> my name is <break time="0.5s"/> to save your name`);
+        session.emit(':ask', `say <break time="0.5s"/>start <break time="0.5s"/> to start a game, or <break time="0.5s"/> my name is <break time="0.5s"/> to save your name`,
+         `say <break time="0.5s"/>start <break time="0.5s"/> to start a game, or <break time="0.5s"/> my name is <break time="0.5s"/> to save your name`);
       },
 
       cancel: (session) => {

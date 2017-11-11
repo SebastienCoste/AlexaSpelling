@@ -1,12 +1,11 @@
 'use strict';
 
 const Alexa = require('alexa-sdk');
-const eventSourcing = require('./Event/event');
-const interaction = require('./helpers/interaction');
+const interaction = require('../helpers/interaction');
 
 const stateContext = require('./stateContext');
 
-const identificationHandlers = Alexa.CreateStateHandler(stateContext.states.IDENTIFICATION, {
+const identificationHandler = Alexa.CreateStateHandler(stateContext.states.IDENTIFICATION, {
   'NewSession': function() {
       interaction.newSession(this);
   },
@@ -32,6 +31,6 @@ const identificationHandlers = Alexa.CreateStateHandler(stateContext.states.IDEN
   'Unhandled': function(){
     interaction.unhandled(this);
   }
-})
+});
 
-module.exports = identificationHandlers;
+module.exports = identificationHandler;

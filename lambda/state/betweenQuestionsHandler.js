@@ -1,12 +1,11 @@
 'use strict';
 
 const Alexa = require('alexa-sdk');
-const eventSourcing = require('./Event/event');
-const interaction = require('./helpers/interaction');
+const interaction = require('../helpers/interaction');
 
 const stateContext = require('./stateContext');
 
-const betweenQuestionsHandlers = Alexa.CreateStateHandler(stateContext.states.BETWEEN_QUESTIONS, {
+const betweenQuestionsHandler = Alexa.CreateStateHandler(stateContext.states.BETWEEN_QUESTIONS, {
 
   'LaunchRequest': function() {
       interaction.launchRequest(this);
@@ -36,6 +35,6 @@ const betweenQuestionsHandlers = Alexa.CreateStateHandler(stateContext.states.BE
   'Unhandled': function(){
     interaction.unhandled(this);
   }
-})
+});
 
-module.exports = betweenQuestionsHandlers;
+module.exports = betweenQuestionsHandler;

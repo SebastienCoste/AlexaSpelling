@@ -1,12 +1,11 @@
 'use strict';
 
 const Alexa = require('alexa-sdk');
-const eventSourcing = require('./Event/event');
-const interaction = require('./helpers/interaction');
+const interaction = require('../helpers/interaction');
 
 const stateContext = require('./stateContext');
 
-const questionningHandlers = Alexa.CreateStateHandler(stateContext.states.QUESTIONNING, {
+const questionningHandler = Alexa.CreateStateHandler(stateContext.states.QUESTIONNING, {
 
   'RepeatIntent': function() {
       interaction.repeatQuestion(this);
@@ -33,6 +32,6 @@ const questionningHandlers = Alexa.CreateStateHandler(stateContext.states.QUESTI
   'Unhandled': function(){
     interaction.unhandled(this);
   }
-})
+});
 
-module.exports = questionningHandlers;
+module.exports = questionningHandler;
