@@ -2,14 +2,10 @@
 
 const Alexa = require('alexa-sdk');
 // Helpers
-const convertArrayToReadableString = require('./helpers/convertArrayToReadableString');
-const getAWord = require('./helpers/words');
 const eventSourcing = require('./Event/event');
 const interaction = require('./helpers/interaction');
 
-const appId = "amzn1.ask.skill.11532793-2767-420b-ae38-e2ae5e5a397a";  // TODO replace with your app ID (OPTIONAL).
-
-
+const appId = process.env.ALEXA_APP_ID;  // TODO replace with your app ID (OPTIONAL).
 
 const handlers =  {
 
@@ -19,11 +15,9 @@ const handlers =  {
   'LaunchRequest': function() {
       interaction.launchRequest(this);
   },
-
   'NameCapture': function() {
       interaction.captureName(this);
   },
-
   'StartIntent': function() {
       interaction.startContest(this);
   },
@@ -31,28 +25,22 @@ const handlers =  {
       interaction.treatAnswer(this);
   },
   'RepeatIntent': function() {
-    interaction.repeatQuestion(this);
-
+      interaction.repeatQuestion(this);
   },
   'AMAZON.HelpIntent': function() {
       interaction.help(this);
-
   },
   'AMAZON.CancelIntent': function() {
       interaction.cancel(this);
-
   },
   'AMAZON.StopIntent': function() {
-    interaction.stopIt(this);
-
+      interaction.stopIt(this);
   },
   'StopIntent': function() {
-    interaction.stopIt(this);
-
+      interaction.stopIt(this);
   },
   'SessionEndedRequest': function (){
-    interaction.stopIt(this);
-
+      interaction.stopIt(this);
   }
 
 };
