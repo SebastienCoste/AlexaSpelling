@@ -1,6 +1,6 @@
 'use strict';
 
-const eventTableName = "SpellingContestEvent";
+const eventTableName = process.env.EVENT_TABLE;
 
 const pkName = "userId";
 const pkType = 'S';

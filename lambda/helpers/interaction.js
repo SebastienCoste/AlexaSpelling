@@ -3,6 +3,8 @@
 const getUserName = require('./user');
 const getAWord = require('./words');
 
+const stateContext = require('./stateContext');
+
 module.exports = (function(){
 
     return {
@@ -20,16 +22,29 @@ module.exports = (function(){
           }
         },
 
+      newSession : (session) => {
+            // Check for User Data in Session Attributes
+          let userName = session.attributes['userName'];
+             if (userName) {
+               session.handler.state = stateContext.states.BETWEEN_QUESTIONS;
+               session.emitWithState('LaunchRequest')
+            } else {
+              // Welcome User for the First Time
+              session.emit(':ask', 'Welcome to spelling contest! Say ... "my name is" ... to bind your experience to you', 'Say "my name is" to bind your experience to you');
+            }
+        },
+
       launchRequest : (session) => {
           // Check for User Data in Session Attributes
         let userName = session.attributes['userName'];
-           if (userName) {
-             // greet the user by name
-             session.emit(':ask', `Welcome back ${userName}! say <break time="0.5s"/> "start" <break time="0.5s"/>  to start a contest`,  `say <break time="0.5s"/> "start" <break time="0.5s"/>  to start a contest`);
-          } else {
-            // Welcome User for the First Time
-            session.emit(':ask', 'Welcome to spelling contest! Say ... "my name is" ... to bind your experience to you', 'Say "my name is" to bind your experience to you');
-          }
+           if (!userName) {
+             session.handler.state = stateContext.states.IDENTIFICATION;
+             session.emitWithState('NewSession')
+            } else {
+              // greet the user by name
+              session.emit(':ask', `Welcome back ${userName}! say <break time="0.5s"/> "start" <break time="0.5s"/>  to start a contest, or <break time="0.5s"/> my name is <break time="0.5s"/> to change your name`,
+              `say <break time="0.5s"/> "start" <break time="0.5s"/>  to start a contest, or <break time="0.5s"/> my name is <break time="0.5s"/> to change your name`);
+           }
       },
 
       captureName: (session) => {
@@ -38,7 +53,7 @@ module.exports = (function(){
         // Save Name in Session Attributes
         if (userName) {
           session.attributes['userName'] = userName;
-
+          session.handler.state = stateContext.states.BETWEEN_QUESTIONS;
           session.emit(':ask', `Ok ${userName} ! Let\'s get started.`, `say <break time="0.5s"/> "start" <break time="0.5s"/>  to start a contest`);
         } else {
           session.emit(':ask', `Sorry, I didn\'t recognise that name!`, `Tell me your name by saying: My name is, and then your name.`);
@@ -49,6 +64,7 @@ module.exports = (function(){
         let word = getAWord();
         session.attributes['word'] = word;
         let number = word.trim().length;
+        session.handler.state = stateContext.states.QUESTIONNING;
 
         session.emit(':ask',
             `we\'re looking for a word of ${number} letters <break time="1s"/>  <say-as interpret-as="spell-out">${word}</say-as>` ,
@@ -62,6 +78,8 @@ module.exports = (function(){
         }
         let word = session.attributes['word'];
         let answer = session.event.request.intent.slots.wordAnswer.value;
+
+        session.handler.state = stateContext.states.BETWEEN_QUESTIONS;
 
         if (!word){
             session.emit(':ask', `${userName} start a contest by sating <break time="0.5s"/>  start`, `say <break time="0.5s"/>  start <break time="0.5s"/>  to start a contest.`);
@@ -98,7 +116,19 @@ module.exports = (function(){
         }
       },
 
-      help: (session) => {
+      helpIdentification: (session) => {
+        session.emit(':ask', `say <break time="0.5s"/> my name is <break time="0.5s"/> to bind the game to you`,
+         `say <break time="0.5s"/> my name is <break time="0.5s"/> to bind the game to you`);
+      },
+
+      helpQuestionning: (session) => {
+        session.emit(':ask', `say <break time="0.5s"/>repeat <break time="0.5s"/> to repeat the question, or` +
+         ` answer the question if you want another`,
+         `say <break time="0.5s"/>repeat <break time="0.5s"/> to repeat the question, or` +
+         ` answer the question if you want another`,);
+      },
+
+      helpBetweenQuestions: (session) => {
         session.emit(':ask', `say <break time="0.5s"/>start <break time="0.5s"/> to start a game, or` +
          ` <break time="0.5s"/> my name is <break time="0.5s"/> to save your name`,
          `say <break time="0.5s"/>start <break time="0.5s"/> to start a game, or` +
@@ -107,6 +137,10 @@ module.exports = (function(){
 
       cancel: (session) => {
         session.emit(':tell', 'OK.');
+      },
+
+      unhandled: (session) => {
+        this.emitWithState('AMAZON.HelpIntent');
       }
 
     }
