@@ -82,7 +82,7 @@ module.exports = (function(){
         session.handler.state = stateContext.states.BETWEEN_QUESTIONS;
 
         if (!word){
-            session.emit(':ask', `${userName} start a contest by sating <break time="0.5s"/>  start`, `say <break time="0.5s"/>  start <break time="0.5s"/>  to start a contest.`);
+            session.emit(':ask', `${userName} start a contest by sating <break time="0.5s"/>  start`, `say <break time="0.5s"/>  start a game <break time="0.5s"/>  to start a contest.`);
         } else if (!answer){
             session.emit(':ask', `I couldn\'t catch your answer ${userName} <break time="0.5s"/>  please repeat it`, `please repeat your answer.`);
         } else {
@@ -90,11 +90,11 @@ module.exports = (function(){
             session.attributes['previousAnswer'] = answer;
             session.attributes['word'] = undefined;
             if (word.trim().toLowerCase() === answer.trim().toLowerCase()){
-                session.emit(':ask', `Congratulations ${userName} <break time="0.5s"/>  you found the word ${word}. say <break time="0.5s"/>  start <break time="0.5s"/>  to start another contest.`,
-                    `say <break time="0.5s"/>  start <break time="0.5s"/>  to start another contest.`);
+                session.emit(':ask', `Congratulations ${userName} <break time="0.5s"/>  you found the word ${word}. say <break time="0.5s"/>  start a game <break time="0.5s"/>  to start another contest.`,
+                    `say <break time="0.5s"/>  start a game <break time="0.5s"/>  to start another contest.`);
             } else {
-                session.emit(':ask', `Sorry ${userName} <break time="0.5s"/>  you said ${answer} but the answer was <emphasis level="strong">${word}</emphasis>. say <break time="0.5s"/>  start <break time="0.5s"/>  to start another contest.`,
-                    `say <break time="0.5s"/>  start <break time="0.5s"/>  to start another contest.`);
+                session.emit(':ask', `Sorry ${userName} <break time="0.5s"/>  you said ${answer} but the answer was <emphasis level="strong">${word}</emphasis>. say <break time="0.5s"/>  start a game <break time="0.5s"/>  to start another contest.`,
+                    `say <break time="0.5s"/>  start a game <break time="0.5s"/>  to start another contest.`);
             }
         }
       },
@@ -106,7 +106,7 @@ module.exports = (function(){
             userName = "";
         }
         if (!word){
-            session.emit(':ask', `${userName} start a contest by sating <break time="0.5s"/>  start`, `say <break time="0.5s"/>  start <break time="0.5s"/>  to start a contest.`);
+            session.emit(':ask', `${userName} start a contest by sating <break time="0.5s"/>  start`, `say <break time="0.5s"/>  start a game <break time="0.5s"/>  to start a contest.`);
         } else{
           let number = word.trim().length;
 
@@ -127,8 +127,8 @@ module.exports = (function(){
       },
 
       helpBetweenQuestions: (session) => {
-        session.emit(':ask', `say <break time="0.5s"/>start <break time="0.5s"/> to start a game, or <break time="0.5s"/> my name is <break time="0.5s"/> to save your name`,
-         `say <break time="0.5s"/>start <break time="0.5s"/> to start a game, or <break time="0.5s"/> my name is <break time="0.5s"/> to save your name`);
+        session.emit(':ask', `say <break time="0.5s"/>start a game <break time="0.5s"/> to start a game, or <break time="0.5s"/> my name is <break time="0.5s"/> to save your name`,
+         `say <break time="0.5s"/>start a game <break time="0.5s"/> to start a game, or <break time="0.5s"/> my name is <break time="0.5s"/> to save your name`);
       },
 
       cancel: (session) => {
@@ -136,7 +136,7 @@ module.exports = (function(){
       },
 
       unhandled: (session) => {
-        this.emitWithState('AMAZON.HelpIntent');
+        session.emitWithState('AMAZON.HelpIntent');
       }
 
     }

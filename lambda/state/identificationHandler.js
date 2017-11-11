@@ -29,7 +29,7 @@ const identificationHandler = Alexa.CreateStateHandler(stateContext.states.IDENT
       interaction.stopIt(this);
   },
   'Unhandled': function(){
-    interaction.unhandled(this);
+      interaction.unhandled(this);
   }
 });
 
