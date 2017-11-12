@@ -83,7 +83,6 @@ module.exports = (function() {
       }
       answer = "" + answer;
 
-
       if (!word) {
         session.handler.state = stateContext.states.BETWEEN_QUESTIONS;
         session.emit(':ask', `${userName} start a contest by sating <break time="0.5s"/>  start`, `say <break time="0.5s"/>  start a game <break time="0.5s"/>  to start a contest.`);
