@@ -27,10 +27,10 @@ module.exports = (function() {
       let userName = session.attributes['userName'];
       if (userName) {
         session.handler.state = stateContext.states.BETWEEN_QUESTIONS;
-        session.emitWithState('LaunchRequest')
+        return session.emitWithState('LaunchRequest')
       } else {
         // Welcome User for the First Time
-        session.emit(':ask', 'Welcome to spelling contest! Say ... "my name is" ... to bind your experience to you', 'Say "my name is" to bind your experience to you');
+        return session.emit(':ask', 'Welcome to spelling contest! Say ... "my name is" ... to bind your experience to you', 'Say "my name is" to bind your experience to you');
       }
     },
 
@@ -75,6 +75,10 @@ module.exports = (function() {
         userName = "";
       }
       let word = "" + session.attributes['word'];
+      word = word.trim().toLowerCase();
+      if(word === "start" || word === "again"){
+        return session.emitWithState('StartIntent');
+      }
       let wordAnswer = session.event.request.intent.slots.wordAnswer.value;
       let numberAnswer = session.event.request.intent.slots.numberAnswer.value;
       let answer = wordAnswer;
@@ -93,7 +97,7 @@ module.exports = (function() {
         session.attributes['previousWord'] = word;
         session.attributes['previousAnswer'] = answer;
         session.attributes['word'] = undefined;
-        if (word.trim().toLowerCase() === answer.trim().toLowerCase()) {
+        if (word === answer.trim().toLowerCase()) {
           session.emit(':ask', `Congratulations ${userName} <break time="0.5s"/>  you found the answer ${word}. say <break time="0.5s"/>  start a game <break time="0.5s"/>  to start another contest.`,
             `say <break time="0.5s"/>  start a game <break time="0.5s"/>  to start another contest.`);
         } else {
@@ -138,8 +142,27 @@ module.exports = (function() {
     cancel: (session) => {
       session.emit(':tell', 'OK.');
     },
+    unhandledBetweenQuestion: (session) => {
+
+      //Sometimes Alexa mixes up the StartIntent and the AnswerIntent if the user says 1 word to restart a contest
+      if (session.request.intent.name === "AnswerIntent"){
+        let wordAnswer = session.event.request.intent.slots.wordAnswer.value;
+        let numberAnswer = session.event.request.intent.slots.numberAnswer.value;
+        let answer = wordAnswer;
+        if (!answer){
+          answer = numberAnswer;
+        }
+        answer = ("" + answer).trim().toLowerCase();
+        if(answer === "start" || answer === "again"){
+          return session.emitWithState('StartIntent');
+        }
+      }
+
+      session.emitWithState('AMAZON.HelpIntent');
+    },
 
     unhandled: (session) => {
+
       session.emitWithState('AMAZON.HelpIntent');
     }
 

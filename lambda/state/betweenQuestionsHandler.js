@@ -33,7 +33,7 @@ const betweenQuestionsHandler = Alexa.CreateStateHandler(stateContext.states.BET
     interaction.stopIt(this);
   },
   'Unhandled': function() {
-    interaction.unhandled(this);
+    interaction.unhandledBetweenQuestion(this);
   }
 });
 
