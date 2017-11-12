@@ -1,7 +1,9 @@
-AnswerIntent (I think/probably/maybe/perhaps/ ) (my/the/an/a) answer is {wordAnswer}
-AnswerIntent (I think/probably/maybe/perhaps/ ) (is it/it is/it's/this is/that is/that's/is that/is this/ ) {wordAnswer}
+AnswerIntent (I think/probably/maybe/perhaps/ ) (my/the/an/a) answer is ({wordAnswer}/{numberAnswer})
+AnswerIntent (I think/probably/maybe/perhaps/ ) (is it/it is/it's/this is/that is/that's/is that/is this/ ) ({wordAnswer}/{numberAnswer})
 
-StartIntent (please/ ) (for/to/ ) (going/go/starting/start/let's go/beginning/begin/commencing/commence/launching/launch/raising/raise) (the/a/a new/another/ )( /contest/game/match/it/) (again/ )
+StartIntent (please/ ) (to/ ) (go/start/let's go/begin/commence/launch/raise) (the/a/a new/another/ ) ( /contest/game/match/it/) (again/ )
+StartIntent (please/ ) for (going on/starting/beginning/commencing/launching/raising) (the/a/a new/another/ ) ( /contest/game/match/it/) (again/ )
+
 StartIntent (please/ ) (another/next/again/another one/last/a last) (please/ )
 
 NameCapture (please/ ) (no/to/ ) (call me/you can call me/my name is/I am/I'm/ ) ({USFirstName}/{UKFirstName}) (please/ )
