@@ -61,7 +61,7 @@ module.exports = (function() {
     },
 
     startContest: (session) => {
-      var letterOrNumber = Math.floor(Math.random() * 2);
+      let letterOrNumber = Math.floor(Math.random() * 2);
       if (letterOrNumber === 1){
         return startWordContest(session);
       } else {
@@ -116,8 +116,6 @@ module.exports = (function() {
       if (!word) {
         session.emit(':ask', `${userName} start a contest by sating <break time="0.5s"/>  start`, `say <break time="0.5s"/>  start a game <break time="0.5s"/>  to start a contest.`);
       } else {
-        let number = word.trim().length;
-
         session.emit(':ask',
           `the answer to guess is <break time="1s"/>  <emphasis level="strong"><say-as interpret-as="spell-out">${word}</say-as></emphasis>`,
           `I repeat <break time="0.5s"/>  <emphasis level="strong"><say-as interpret-as="spell-out">${word}</say-as></emphasis>`);
@@ -181,14 +179,12 @@ function startWordContest(session){
 }
 
 function startNumberContest(session){
-  const firstNumber = Math.floor(Math.random() * 99);
-  const secondNumber = Math.floor(Math.random() * 99);
-  let word = firstNumber + secondNumber;
+  let word = "" + Math.floor(Math.random() * 99999);
   session.attributes['word'] = word;
-  let number = ("" + word).trim().length;
+  let number = word.trim().length;
   session.handler.state = stateContext.states.QUESTIONNING;
 
   session.emit(':ask',
-    `we\'re looking for a number of ${number} digits <break time="1s"/>  <say-as interpret-as="spell-out">${firstNumber}</say-as> plus <say-as interpret-as="spell-out">${secondNumber}</say-as>`,
+    `we\'re looking for a number of ${number} digits <break time="1s"/> <say-as interpret-as="spell-out">${word}</say-as>`,
     `I repeat <break time="0.5s"/>  <say-as interpret-as="spell-out">${word}</say-as>`);
 }

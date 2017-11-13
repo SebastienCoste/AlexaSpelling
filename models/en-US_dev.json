@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "dev spell",
+      "invocationName": "dev spelling contest",
       "intents": [
         {
           "name": "NameCapture",

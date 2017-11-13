@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "spelling",
+      "invocationName": "spelling contest",
       "intents": [
         {
           "name": "NameCapture",
