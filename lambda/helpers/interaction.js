@@ -13,9 +13,9 @@ module.exports = (function() {
       session.attributes['previousWord'] = undefined;
       session.attributes['previousAnswer'] = undefined;
       session.attributes['word'] = undefined;
-      session.emit(':saveState', true); //Save the state when user quits
+      session.emit(':saveState', true); //Save the state
       let userName = session.attributes['userName'];
-      if (userName) {
+      if (userName ) {
         session.emit(':tell', `Bye ${userName}!`);
       } else {
         session.emit(':tell', `OK bye`);
@@ -27,6 +27,7 @@ module.exports = (function() {
       let userName = session.attributes['userName'];
       if (userName) {
         session.handler.state = stateContext.states.BETWEEN_QUESTIONS;
+        session.emit(':saveState', true); //Save the state
         return session.emitWithState('LaunchRequest')
       } else {
         // Welcome User for the First Time
@@ -39,6 +40,7 @@ module.exports = (function() {
       let userName = session.attributes['userName'];
       if (!userName) {
         session.handler.state = stateContext.states.IDENTIFICATION;
+        session.emit(':saveState', true); //Save the state
         session.emitWithState('NewSession')
       } else {
         // greet the user by name
@@ -54,16 +56,16 @@ module.exports = (function() {
       if (userName) {
         session.attributes['userName'] = userName;
         session.handler.state = stateContext.states.BETWEEN_QUESTIONS;
+        session.emit(':saveState', true); //Save the state
         session.emit(':ask', `Ok ${userName} ! Let\'s get started.`, `say <break time="0.5s"/> "start" <break time="0.5s"/>  to start a contest`);
       } else {
         session.emit(':ask', `Sorry, I didn\'t recognise that name!`, `Tell me your name by saying: My name is, and then your name.`);
       }
     },
-
     startContest: (session) => {
-      let letterOrNumber = Math.floor(Math.random() * 2);
+      let letterOrNumber = Math.floor(Math.random() * 100);
       console.log ("letterOrNumber " + letterOrNumber);
-      if (letterOrNumber === 1){
+      if (letterOrNumber < 50){
         return startWordContest(session);
       } else {
         return startNumberContest(session);
@@ -90,11 +92,13 @@ module.exports = (function() {
 
       if (!word) {
         session.handler.state = stateContext.states.BETWEEN_QUESTIONS;
+        session.emit(':saveState', true); //Save the state
         session.emit(':ask', `${userName} start a contest by sating <break time="0.5s"/>  start`, `say <break time="0.5s"/>  start a game <break time="0.5s"/>  to start a contest.`);
       } else if (!answer) {
         session.emit(':ask', `I couldn\'t catch your answer ${userName} <break time="0.5s"/>  please repeat it`, `please repeat your answer.`);
       } else {
         session.handler.state = stateContext.states.BETWEEN_QUESTIONS;
+        session.emit(':saveState', true); //Save the state
         session.attributes['previousWord'] = word;
         session.attributes['previousAnswer'] = answer;
         session.attributes['word'] = undefined;
@@ -173,6 +177,7 @@ function startWordContest(session){
   session.attributes['word'] = word;
   let number = word.trim().length;
   session.handler.state = stateContext.states.QUESTIONNING;
+  session.emit(':saveState', true); //Save the state
 
   session.emit(':ask',
     `we\'re looking for a word of ${number} letters <break time="1s"/>  <say-as interpret-as="spell-out">${word}</say-as>`,
@@ -184,6 +189,7 @@ function startNumberContest(session){
   session.attributes['word'] = word;
   let number = word.trim().length;
   session.handler.state = stateContext.states.QUESTIONNING;
+  session.emit(':saveState', true); //Save the state
 
   session.emit(':ask',
     `we\'re looking for a number of ${number} digits <break time="1s"/> <say-as interpret-as="spell-out">${word}</say-as>`,
