@@ -62,6 +62,7 @@ module.exports = (function() {
 
     startContest: (session) => {
       let letterOrNumber = Math.floor(Math.random() * 2);
+      console.log ("letterOrNumber " + letterOrNumber);
       if (letterOrNumber === 1){
         return startWordContest(session);
       } else {
@@ -82,7 +83,7 @@ module.exports = (function() {
       let wordAnswer = session.event.request.intent.slots.wordAnswer.value;
       let numberAnswer = session.event.request.intent.slots.numberAnswer.value;
       let answer = wordAnswer;
-      if (!answer){
+      if (!answer && answer != ""){
         answer = numberAnswer;
       }
       answer = "" + answer;
@@ -123,18 +124,18 @@ module.exports = (function() {
     },
 
     helpIdentification: (session) => {
-      session.emit(':ask', `say <break time="0.5s"/> my name is <break time="0.5s"/> to bind the game to you`,
-        `say <break time="0.5s"/> my name is <break time="0.5s"/> to bind the game to you`);
+      session.emit(':ask', `Before starting, say <break time="0.5s"/> my name is <break time="0.5s"/> to bind the game to you`,
+        `Before starting,  you need to tell a first name. say <break time="0.5s"/> my name is <break time="0.5s"/> to bind the game to you`);
     },
 
     helpQuestionning: (session) => {
-      session.emit(':ask', `say <break time="0.5s"/>repeat <break time="0.5s"/> to repeat the question, or answer the question if you want another`,
-        `say <break time="0.5s"/>repeat <break time="0.5s"/> to repeat the question, or answer the question if you want another`);
+      session.emit(':ask', `you're in the middle of a question, say <break time="0.5s"/>repeat <break time="0.5s"/> to repeat the question, or answer the question if you want another`,
+        `you're in the middle of a question, say <break time="0.5s"/>repeat <break time="0.5s"/> to repeat the question, or answer the question if you want another`);
     },
 
     helpBetweenQuestions: (session) => {
-      session.emit(':ask', `say <break time="0.5s"/>start a game <break time="0.5s"/> to start a game, or <break time="0.5s"/> my name is <break time="0.5s"/> to save your name`,
-        `say <break time="0.5s"/>start a game <break time="0.5s"/> to start a game, or <break time="0.5s"/> my name is <break time="0.5s"/> to save your name`);
+      session.emit(':ask', `say <break time="0.5s"/>start a game <break time="0.5s"/> to start a game, or <break time="0.5s"/> my name is <break time="0.5s"/> to change your name`,
+        `say <break time="0.5s"/>start a game <break time="0.5s"/> to start a game, or <break time="0.5s"/> my name is <break time="0.5s"/> to change your name`);
     },
 
     cancel: (session) => {
