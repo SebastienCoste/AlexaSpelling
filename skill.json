@@ -6,8 +6,8 @@
           "summary": "Spelling contest: test your english",
           "examplePhrases": [
             "Alexa open spelling contest",
-            "Alexa tell spelling contest my name is Jeff",
-            "Alexa ask spelling contest to start a game"
+            "My name is Jeff",
+            "Start a game"
           ],
           "keywords": [
             "spelling",
@@ -15,12 +15,12 @@
           ],
           "name": "Spelling contest",
           "smallIconUri": "https://api.amazonalexa.com/v0/skills/amzn1.ask.skill.b6e260ca-3a10-4b38-b4fd-d2c704f9b1ef/images/eyJkIjoiY2x1WG95VExnbUlkK2QweXFTdUYyMG9WekJhT0dtTjhlV3I2OGV2N1pnNURQRzllNC9wZzNpZEFjQ2pOVmRwTmxaYkluTmlqSWFYZjNYOFpncXZjeVY4d01VSHVlUkJFUkZOS0FEak1CQm56STJrQnNVWUI5M05LMnRYWkVKUU4iLCJpdiI6IldxdGdUT3M3VFBRRzNhaVFxUC9EQVE9PSIsInYiOjF9",
-          "description": "Spelling contest: test your english. Give your name and join the contest on your english understanding. Say my name is and your name to join the contest, then ask the skill to start a game. If needed, you can ask Alexa to repeat, she will do it slowerly. Alexa gives word or numbers to listen. Change your name at any time between questions to let your friends joining the contest. Next  features to come:  access to leaderboard.",
+          "description": "Spelling contest\n\nTest your English. Join the contest for your English understanding. \n\nSay \"my name is\" and your name to join the contest, then ask Alexa to start a game. If needed, you can tell Alexa to repeat, and she will do it slowly. \n * Alexa gives the word to listen to one letter at a time. Answer the full word to complete the challenge. \n * Alexa also says numbers one digit at a time \n\nChange your name at any time between questions to let your friends joining the contest. \n\nNext features in the pipe:  access to a leaderboard. Do not hesitate to provide feedback and ideas on what you would like to see in the game!",
           "largeIconUri": "https://api.amazonalexa.com/v0/skills/amzn1.ask.skill.b6e260ca-3a10-4b38-b4fd-d2c704f9b1ef/images/eyJkIjoid3d5NXpUSWVnM3FDdVFhZFhYamh4TWhiNnN1YW0vTTcxbVViTVYwR1pWT28yUmthMTdhS1BwMjBMYUFuT1ZsZ3QrRzFTRWhGR3h6M0k5MVgzUTFpckFBSzdTa2FFUy9oSzd5ckVVd2YvdEhCLzFldU1xQnVKWDlzbmpQS1lXWkt6dUFrUUVlN0RORXREemt4ZUxwTXB3PT0iLCJpdiI6ImJPbmtFZndBTzZlZWtBcTg0WGIxL0E9PSIsInYiOjF9"
         }
       },
       "isAvailableWorldwide": true,
-      "testingInstructions": "Spelling contest: test your english. Give your name and join the contest on your english understanding. Say my name is and your name to join the contest, then ask the skill to start a game. If needed, you can ask Alexa to repeat, she will do it slowerly. Alexa gives word or numbers to listen. Change your name at any time between questions to let your friends joining the contest. Next  features to come: access to leaderboard.\n\nTo run, the skill uses 1 lambda and 2 dynamo DBs: 1 to store the session, and 1 to store the events. THeses tables are linked to the lambda, so they should not be duplicated by user.",
+      "testingInstructions": "The skill spells words and digits, and expect the user to tell the full word or number. \n\nThe skill can start spelling words and numbers once you gave your name. You can change your name between 2 questions but not before answering the current question. \n\nThe skill can repeat a question, it will do it will be slower than the 1st time.",
       "category": "EDUCATION_AND_REFERENCE",
       "distributionCountries": []
     },
