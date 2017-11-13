@@ -148,7 +148,7 @@ module.exports = (function() {
     unhandledBetweenQuestion: (session) => {
 
       //Sometimes Alexa mixes up the StartIntent and the AnswerIntent if the user says 1 word to restart a contest
-      if (session.request.intent.name === "AnswerIntent"){
+      if (session.request && session.request.intent && session.request.intent.name === "AnswerIntent"){
         let wordAnswer = session.event.request.intent.slots.wordAnswer.value;
         let numberAnswer = session.event.request.intent.slots.numberAnswer.value;
         let answer = wordAnswer;
